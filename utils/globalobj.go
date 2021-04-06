@@ -14,7 +14,7 @@ import (
 type GlobalObj struct {
 	TcpServer ziface.IServer
 	Host      string // 当前的监听IP
-	TcpPort   int
+	TcpPort   int64
 	Name      string
 
 	Version        string // 当前zinx版本号
