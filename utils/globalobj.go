@@ -47,11 +47,11 @@ func (o *GlobalObj) Reload() {
 	// 将json数据解析到struct
 
 	if err != nil {
-		panic(err)
+		fmt.Println("err for loading config file: ", err)
 	}
 	err = json.Unmarshal(data, &GlobalObject)
 	if err != nil {
-		panic(err)
+		fmt.Println("err for loading config file: ", err)
 	}
 }
 
