@@ -2,7 +2,12 @@ package utils
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"strings"
 	"trueabc.top/zinx/ziface"
 )
 
@@ -28,7 +33,16 @@ type GlobalObj struct {
 
 var GlobalObject *GlobalObj
 
+func GetAppPath() string {
+	file, _ := exec.LookPath(os.Args[0])
+	path, _ := filepath.Abs(file)
+	index := strings.LastIndex(path, string(os.PathSeparator))
+
+	return path[:index]
+}
+
 func (o *GlobalObj) Reload() {
+	fmt.Println("当前路径是: ", GetAppPath())
 	data, err := ioutil.ReadFile("conf/zinx.json")
 	// 将json数据解析到struct
 
