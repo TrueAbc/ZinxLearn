@@ -1,6 +1,7 @@
 package znet
 
 import (
+	"errors"
 	"fmt"
 	"net"
 	"trueabc.top/zinx/ziface"
@@ -15,6 +16,17 @@ type Server struct {
 	IP string
 
 	Port int64
+}
+
+// 定義當前客戶端綁定的handler, 之後應該由框架使用者進行自定義
+func CallBack(conn *net.TCPConn, data []byte, cnt int) error {
+	fmt.Println("[Connection Handler] CallBack to client")
+	if _, err := conn.Write(data[:cnt]); err != nil {
+		fmt.Println("write back buf err: ", err)
+		return errors.New("CallBack to Client error")
+	}
+
+	return nil
 }
 
 func (s *Server) Start() {
@@ -32,6 +44,7 @@ func (s *Server) Start() {
 			return
 		}
 		fmt.Println("start Zinx Server ", s.Name)
+		var cid uint32
 		// 3.  等待链接
 		for {
 			// 客户端链接过来阻塞会返回
@@ -40,23 +53,11 @@ func (s *Server) Start() {
 				fmt.Println("Accept err: ", err)
 				continue
 			}
+			// 將處理鏈接的方法和conn綁定, 得到鏈接模塊
+			dealConn := NewConnection(conn, cid, CallBack)
+			go dealConn.Start()
 
-			go func(conn net.Conn) {
-				for true {
-					buf := make([]byte, 512)
-					cnt, err := conn.Read(buf)
-					if err != nil {
-						fmt.Println("recv buf err: ", err)
-						continue
-					}
-					fmt.Println("recv client buf: ", string(buf[:cnt]), "cnt ", cnt)
-					// 回显
-					if _, err := conn.Write(buf[:cnt]); err != nil {
-						fmt.Println("write back err: ", err)
-						continue
-					}
-				}
-			}(conn)
+			cid++
 		}
 	}()
 }
