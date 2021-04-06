@@ -46,10 +46,10 @@ func (s *Server) Start() {
 					buf := make([]byte, 512)
 					cnt, err := conn.Read(buf)
 					if err != nil {
-						fmt.Println("recv buf err")
+						fmt.Println("recv buf err: ", err)
 						continue
 					}
-
+					fmt.Println("recv client buf: ", string(buf[:cnt]), "cnt ", cnt)
 					// 回显
 					if _, err := conn.Write(buf[:cnt]); err != nil {
 						fmt.Println("write back err: ", err)
