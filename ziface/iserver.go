@@ -9,4 +9,7 @@ type IServer interface {
 
 	Stop()
 	// 停止
+
+	// 路由功能, 給當前的服務注冊一個路由功能，供給客戶端鏈接使用
+	AddRouter(router IRouter)
 }

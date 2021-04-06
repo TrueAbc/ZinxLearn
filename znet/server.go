@@ -1,7 +1,6 @@
 package znet
 
 import (
-	"errors"
 	"fmt"
 	"net"
 	"trueabc.top/zinx/ziface"
@@ -16,17 +15,14 @@ type Server struct {
 	IP string
 
 	Port int64
+
+	// 當前server添加的router
+	Router ziface.IRouter
 }
 
-// 定義當前客戶端綁定的handler, 之後應該由框架使用者進行自定義
-func CallBack(conn *net.TCPConn, data []byte, cnt int) error {
-	fmt.Println("[Connection Handler] CallBack to client")
-	if _, err := conn.Write(data[:cnt]); err != nil {
-		fmt.Println("write back buf err: ", err)
-		return errors.New("CallBack to Client error")
-	}
-
-	return nil
+func (s *Server) AddRouter(router ziface.IRouter) {
+	s.Router = router
+	fmt.Println("Add Router success!")
 }
 
 func (s *Server) Start() {
@@ -54,7 +50,7 @@ func (s *Server) Start() {
 				continue
 			}
 			// 將處理鏈接的方法和conn綁定, 得到鏈接模塊
-			dealConn := NewConnection(conn, cid, CallBack)
+			dealConn := NewConnection(conn, cid, s.Router)
 			go dealConn.Start()
 
 			cid++
@@ -80,6 +76,7 @@ func NewServer(name string) ziface.IServer {
 		IPVersion: "tcp4",
 		IP:        "0.0.0.0",
 		Port:      8889,
+		Router:    nil,
 	}
 	return s
 }

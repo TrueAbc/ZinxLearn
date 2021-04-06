@@ -23,6 +23,9 @@ type Connection struct {
 
 	// 告知当前链接退出的chan
 	ExitChan chan bool
+
+	// 該鏈接處理的router方法
+	Router ziface.IRouter
 }
 
 // 链接的读业务方法
@@ -40,11 +43,18 @@ func (c *Connection) StartReader() {
 			continue
 		}
 
-		// 调用当前的处理逻辑
-		if err := c.handler(c.Conn, buf, cnt); err != nil {
-			fmt.Println("ConnId: ", c.ConnID, " handler is err ", err)
-			break
+		// 得到當前的request
+		req := Request{
+			conn: c,
+			data: buf[:cnt],
 		}
+
+		// 调用当前的处理逻辑, 路由的方法
+		go func(request ziface.IRequest) {
+			c.Router.PreHandler(request)
+			c.Router.Handler(request)
+			c.Router.PostHandler(request)
+		}(&req)
 	}
 }
 
@@ -86,11 +96,11 @@ func (c Connection) Send(data []byte) error {
 	panic("implement me")
 }
 
-func NewConnection(conn *net.TCPConn, connID uint32, callback ziface.HandleFunc) *Connection {
+func NewConnection(conn *net.TCPConn, connID uint32, router ziface.IRouter) *Connection {
 	c := &Connection{
 		Conn:     conn,
 		ConnID:   connID,
-		handler:  callback,
+		Router:   router,
 		isClosed: false,
 		ExitChan: make(chan bool, 1),
 	}
