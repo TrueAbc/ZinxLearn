@@ -25,6 +25,7 @@ type GlobalObj struct {
 	Version        string // 当前zinx版本号
 	MaxConn        int    // 当前服务器的最大链接数
 	MaxPackageSize uint32 // 单次数据包的最大值
+	MsgHeaderLen   uint32
 }
 
 /*
@@ -64,6 +65,7 @@ func init() {
 		Host:           "0.0.0.0",
 		MaxConn:        1000,
 		MaxPackageSize: 4096,
+		MsgHeaderLen:   8,
 	}
 
 	GlobalObject.Reload()

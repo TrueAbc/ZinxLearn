@@ -29,3 +29,11 @@ func (m *Message) SetMsgLen(u uint32) {
 func (m *Message) SetMsg(data []byte) {
 	m.Data = data
 }
+
+func NewMessage(id uint32, data []byte) *Message {
+	return &Message{
+		id,
+		uint32(len(data)),
+		data,
+	}
+}

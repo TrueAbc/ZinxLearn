@@ -1,9 +1,10 @@
 package znet
 
 import (
+	"errors"
 	"fmt"
+	"io"
 	"net"
-	"trueabc.top/zinx/utils"
 	"trueabc.top/zinx/ziface"
 )
 
@@ -37,17 +38,43 @@ func (c *Connection) StartReader() {
 
 	for true {
 		// 读取客户端的数据到buf中
-		buf := make([]byte, utils.GlobalObject.MaxPackageSize)
-		cnt, err := c.Conn.Read(buf)
-		if err != nil {
-			fmt.Println("recv buf err: ", err)
-			continue
+		//buf := make([]byte, utils.GlobalObject.MaxPackageSize)
+		//cnt, err := c.Conn.Read(buf)
+		//if err != nil {
+		//	fmt.Println("recv buf err: ", err)
+		//	continue
+		//}
+		// 创建一个拆包对象
+		dp := NewDataPack()
+		// 获取客户端的Msg Header
+		headerData := make([]byte, dp.GetHeaderLen())
+		if _, err := io.ReadFull(c.GetTCPConnection(), headerData); err != nil {
+			fmt.Println("read msg error ", err)
+			break
 		}
+		// 拆包, 得到MsgId和datalen
+		msg, err := dp.Unpack(headerData)
+		if err != nil {
+			fmt.Println("unpack err: ", err)
+			break
+		}
+
+		// 根据dataLen读取data,
+		var data []byte
+		if msg.GetMsgLen() > 0 {
+			data = make([]byte, msg.GetMsgLen())
+			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
+				fmt.Println("read msg data error: ", err)
+				break
+			}
+		}
+
+		msg.SetMsg(data)
 
 		// 得到當前的request
 		req := Request{
 			conn: c,
-			data: buf[:cnt],
+			msg:  msg,
 		}
 
 		// 调用当前的处理逻辑, 路由的方法
@@ -93,8 +120,26 @@ func (c Connection) GetRemoteAddr() net.Addr {
 	return c.Conn.RemoteAddr()
 }
 
-func (c Connection) Send(data []byte) error {
-	panic("implement me")
+// 提供一个SendMsg方法, 将数据先进行封包, 再发送
+func (c Connection) SendMsg(msgId uint32, data []byte) error {
+	if c.isClosed == true {
+		return errors.New("Connection closed when send msg")
+	}
+
+	// 将data进行封包
+	dp := NewDataPack()
+	msg := NewMessage(msgId, data)
+	msgStream, err := dp.Pack(msg)
+	if err != nil {
+		fmt.Println("Pack error msg id = ", msgId)
+		return errors.New("Pack error msg")
+	}
+	if _, err := c.Conn.Write(msgStream); err != nil {
+		fmt.Println("Write msg id: ", msgId, " error: ", err)
+		return errors.New("conn write error")
+	}
+
+	return nil
 }
 
 func NewConnection(conn *net.TCPConn, connID uint32, router ziface.IRouter) *Connection {

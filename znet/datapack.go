@@ -21,7 +21,7 @@ func NewDataPack() *DataPack {
 
 func (d DataPack) GetHeaderLen() uint32 {
 	// datalen uint32 4byte, dataid uint32 4byte
-	return 8
+	return utils.GlobalObject.MsgHeaderLen
 }
 
 func (d DataPack) Pack(msg ziface.IMessage) ([]byte, error) {

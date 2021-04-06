@@ -5,6 +5,7 @@ import (
 	"io"
 	"net"
 	"testing"
+	"time"
 )
 
 // 负责测试datapack拆包 封包的单元测试
@@ -78,6 +79,6 @@ func TestDataPack(t *testing.T) {
 	sendData1 := append(S1, S2...)
 	conn.Write(sendData1)
 
-	select {}
+	time.Sleep(time.Second * 5)
 
 }
