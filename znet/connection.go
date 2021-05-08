@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"sync"
 	"trueabc.top/zinx/utils"
 	"trueabc.top/zinx/ziface"
 )
@@ -35,6 +36,37 @@ type Connection struct {
 
 	// 消息的管理MsgID和对应的处理业务的API
 	MsgHandler ziface.IMsgHandle
+
+	// 链接属性集合
+	property map[string]interface{}
+
+	//保护属性的锁
+	propertyLock sync.RWMutex
+}
+
+func (c *Connection) SetProperty(key string, value interface{}) {
+	c.propertyLock.Lock()
+	defer c.propertyLock.Unlock()
+
+	c.property[key] = value
+}
+
+func (c *Connection) GetProperty(key string) (interface{}, error) {
+	c.propertyLock.RLock()
+	defer c.propertyLock.RUnlock()
+
+	if value, ok := c.property[key]; ok {
+		return value, nil
+	} else {
+		return nil, errors.New("no property found")
+	}
+}
+
+func (c *Connection) RemoveProperty(key string) {
+	c.propertyLock.Lock()
+	defer c.propertyLock.Unlock()
+
+	delete(c.property, key)
 }
 
 /*
@@ -186,6 +218,7 @@ func NewConnection(server ziface.IServer, conn *net.TCPConn, connID uint32, hand
 		msgChan:    make(chan []byte, 0),
 		isClosed:   false,
 		ExitChan:   make(chan bool, 1),
+		property:   make(map[string]interface{}),
 	}
 	c.TcpServer.GetConnMgr().Add(c)
 	// 将connection加入到manager中
