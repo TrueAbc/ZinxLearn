@@ -23,6 +23,33 @@ type Server struct {
 	// 当前server的连接管理模块, 每次与客户端建立连接后加入连接. 每次与客户端连接断开后删除连接
 	// 添加连接之前判断当前的连接数量是否超过最大值
 	ConnMgr ziface.IConnManager
+
+	// 连接创建之后的钩子函数
+	OnConnStart func(conn ziface.IConnection)
+
+	OnConnStop func(conn ziface.IConnection)
+}
+
+func (s *Server) SetOnConnStart(f func(connection ziface.IConnection)) {
+	s.OnConnStart = f
+}
+
+func (s *Server) SetOnConnStop(f func(connection ziface.IConnection)) {
+	s.OnConnStop = f
+}
+
+func (s *Server) CallOnConnStart(connection ziface.IConnection) {
+	if s.OnConnStart != nil {
+		fmt.Println("---------> Call OnConnStart() ...")
+		s.OnConnStart(connection)
+	}
+}
+
+func (s *Server) CallOnConnStop(connection ziface.IConnection) {
+	if s.OnConnStop != nil {
+		fmt.Println("---------> Call OnConnStop()....")
+		s.OnConnStop(connection)
+	}
 }
 
 func (s *Server) GetConnMgr() ziface.IConnManager {

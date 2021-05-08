@@ -121,6 +121,9 @@ func (c *Connection) Start() {
 	go c.StartReader()
 	go c.StartWriter()
 
+	// 创建连接之后需要的业务
+	c.TcpServer.CallOnConnStart(c)
+
 }
 
 func (c *Connection) Stop() {
@@ -131,6 +134,7 @@ func (c *Connection) Stop() {
 	}
 	c.isClosed = true
 
+	c.TcpServer.CallOnConnStop(c)
 	// 告知writer關閉
 	c.ExitChan <- true
 
