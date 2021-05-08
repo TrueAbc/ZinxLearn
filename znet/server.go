@@ -19,6 +19,10 @@ type Server struct {
 
 	// 当前Server的消息管理模块, 用来绑定MsgID和对应的处理业务
 	MsgHandler ziface.IMsgHandle
+
+	// 当前server的连接管理模块, 每次与客户端建立连接后加入连接. 每次与客户端连接断开后删除连接
+	// 添加连接之前判断当前的连接数量是否超过最大值
+	ConnMgr ziface.IConnManager
 }
 
 func (s *Server) AddRouter(msgId uint32, router ziface.IRouter) {
@@ -51,6 +55,13 @@ func (s *Server) Start() {
 		for {
 			// 客户端链接过来阻塞会返回
 			conn, err := listenner.AcceptTCP()
+
+			if s.ConnMgr.Len() >= utils.GlobalObject.MaxConn {
+				// todo 给客户端添加一个超过最大连接数的错误信息
+				conn.Close()
+				continue
+			}
+
 			if err != nil {
 				fmt.Println("Accept err: ", err)
 				continue
@@ -66,6 +77,9 @@ func (s *Server) Start() {
 
 func (s *Server) Stop() {
 	// TODO 将相关的资源进行回收
+	fmt.Println("[STOP] Zinx Server name: ", s.Name)
+	s.ConnMgr.ClearConn()
+
 }
 
 func (s *Server) Serve() {
@@ -83,6 +97,7 @@ func NewServer(name string) ziface.IServer {
 		IP:         utils.GlobalObject.Host,
 		Port:       utils.GlobalObject.TcpPort,
 		MsgHandler: NewMsgHandler(),
+		ConnMgr:    NewConnManager(),
 	}
 	return s
 }
