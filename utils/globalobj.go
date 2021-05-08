@@ -26,6 +26,10 @@ type GlobalObj struct {
 	MaxConn        int    // 当前服务器的最大链接数
 	MaxPackageSize uint32 // 单次数据包的最大值
 	MsgHeaderLen   uint32
+
+	WorkerPoolSize   uint32 // 当前业务工作worker池的数量
+	MaxWorkerTaskLen uint32 // 消息队列的最大长度
+
 }
 
 /*
@@ -66,6 +70,9 @@ func init() {
 		MaxConn:        1000,
 		MaxPackageSize: 4096,
 		MsgHeaderLen:   8,
+
+		WorkerPoolSize:   10,
+		MaxWorkerTaskLen: 1024,
 	}
 
 	GlobalObject.Reload()
