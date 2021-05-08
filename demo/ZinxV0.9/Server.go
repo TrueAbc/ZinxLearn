@@ -40,6 +40,16 @@ func (pr *HelloRouter) Handler(request ziface.IRequest) {
 func main() {
 	s := znet.NewServer("[zinx 0.8]")
 
+	s.SetOnConnStart(func(connection ziface.IConnection) {
+		fmt.Println("---------------> Start deal with client connection")
+		connection.SendMsg(202, []byte("DoConnection end"))
+	})
+
+	s.SetOnConnStop(func(connection ziface.IConnection) {
+		fmt.Println("close connection with client <-------------------------")
+		connection.SendMsg(202, []byte("DoConnection end"))
+	})
+
 	s.AddRouter(0, &PingRouter{})
 	s.AddRouter(1, &HelloRouter{})
 	s.Serve()
