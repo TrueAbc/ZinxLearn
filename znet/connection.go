@@ -14,6 +14,9 @@ import (
 */
 
 type Connection struct {
+	// 当前connection隶属的server
+	TcpServer ziface.IServer
+
 	Conn *net.TCPConn
 
 	ConnID uint32
@@ -131,8 +134,10 @@ func (c *Connection) Stop() {
 	// 告知writer關閉
 	c.ExitChan <- true
 
+	c.TcpServer.GetConnMgr().Remove(c)
 	// 资源回收
 	c.Conn.Close()
+
 	close(c.ExitChan)
 }
 
@@ -168,8 +173,9 @@ func (c Connection) SendMsg(msgId uint32, data []byte) error {
 	return nil
 }
 
-func NewConnection(conn *net.TCPConn, connID uint32, handle ziface.IMsgHandle) *Connection {
+func NewConnection(server ziface.IServer, conn *net.TCPConn, connID uint32, handle ziface.IMsgHandle) *Connection {
 	c := &Connection{
+		TcpServer:  server,
 		Conn:       conn,
 		ConnID:     connID,
 		MsgHandler: handle,
@@ -177,5 +183,7 @@ func NewConnection(conn *net.TCPConn, connID uint32, handle ziface.IMsgHandle) *
 		isClosed:   false,
 		ExitChan:   make(chan bool, 1),
 	}
+	c.TcpServer.GetConnMgr().Add(c)
+	// 将connection加入到manager中
 	return c
 }

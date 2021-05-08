@@ -25,6 +25,10 @@ type Server struct {
 	ConnMgr ziface.IConnManager
 }
 
+func (s *Server) GetConnMgr() *ziface.IConnManager {
+	return &s.ConnMgr
+}
+
 func (s *Server) AddRouter(msgId uint32, router ziface.IRouter) {
 	s.MsgHandler.AddRouter(msgId, router)
 	fmt.Println("Add Router success!")
@@ -58,6 +62,7 @@ func (s *Server) Start() {
 
 			if s.ConnMgr.Len() >= utils.GlobalObject.MaxConn {
 				// todo 给客户端添加一个超过最大连接数的错误信息
+				fmt.Println("Too many connection maxConn = ", utils.GlobalObject.MaxConn)
 				conn.Close()
 				continue
 			}
@@ -67,7 +72,7 @@ func (s *Server) Start() {
 				continue
 			}
 			// 將處理鏈接的方法和conn綁定, 得到鏈接模塊
-			dealConn := NewConnection(conn, cid, s.MsgHandler)
+			dealConn := NewConnection(s, conn, cid, s.MsgHandler)
 			go dealConn.Start()
 
 			cid++
