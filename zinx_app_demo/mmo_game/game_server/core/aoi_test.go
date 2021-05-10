@@ -12,3 +12,16 @@ func TestNewAOIManager(t *testing.T) {
 
 	// 打印AOIManager
 }
+
+func TestAOIManager_GetSurroundGridsById(t *testing.T) {
+	aoiModel := NewAOIManager(0, 250, 0, 250, 5, 5)
+	fmt.Print(aoiModel.GetSurroundGridsById(0))
+	for k, _ := range aoiModel.grids {
+		//得到当前id的周边九宫格
+		grids := aoiModel.GetSurroundGridsById(k)
+		for _, item := range grids {
+			fmt.Print(item.GID, " ")
+		}
+		fmt.Println()
+	}
+}

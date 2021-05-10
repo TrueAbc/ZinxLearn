@@ -1,6 +1,8 @@
 package core
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 AOI区域管理模块
@@ -63,4 +65,38 @@ func (m *AOIManager) gridLength() int {
 	return (m.MaxY - m.MinY) / m.CntsY
 }
 
-// 打印格子信息
+// 根据格子的gid得到周围的格子ID集合
+func (m *AOIManager) GetSurroundGridsById(gID int) (grids []*Grid) {
+	//判断当前的gid是否存在
+	if _, ok := m.grids[gID]; !ok {
+		return
+	}
+
+	// 将自己加入到切片中
+	grids = append(grids, m.grids[gID])
+
+	idx := gID % m.CntsX
+	if idx > 0 {
+		grids = append(grids, m.grids[gID-1])
+	}
+
+	if idx < m.CntsX-1 {
+		grids = append(grids, m.grids[gID+1])
+	}
+	// 将x方向的点加入, 之后处理y轴的点
+
+	// for 的range的特点
+	for _, v := range grids {
+
+		idy := v.GID / m.CntsX
+		// 需要判断id是否是上下左右的边界格子
+		if idy > 0 {
+			grids = append(grids, m.grids[v.GID-m.CntsX])
+		}
+		if idy < m.CntsY-1 {
+			grids = append(grids, m.grids[v.GID+m.CntsX])
+		}
+	}
+
+	return grids
+}
