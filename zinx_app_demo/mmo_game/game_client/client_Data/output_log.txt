@@ -18,28 +18,28 @@ Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\clien
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll into Unity Child Domain
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll (this message is harmless)
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll into Unity Child Domain
-- Completed reload, in  0.434 seconds
+- Completed reload, in  0.046 seconds
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 5600x1350 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.423500 ms
+UnloadTime: 1.062200 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 275c -> priority: 1 
-  Thread -> id: 261c -> priority: 1 
+  Thread -> id: 1d5c -> priority: 1 
+  Thread -> id: 5e0 -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.599500 ms
+UnloadTime: 3.345300 ms
 
 Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 368.
-Total: 0.659100 ms (FindLiveObjects: 0.071500 ms CreateObjectMapping: 0.032300 ms MarkObjects: 0.378900 ms  DeleteObjects: 0.174400 ms)
+Total: 0.480200 ms (FindLiveObjects: 0.024000 ms CreateObjectMapping: 0.013400 ms MarkObjects: 0.224900 ms  DeleteObjects: 0.217100 ms)
 
 Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-Connect: 192.168.2.225:8999
+Connect: 127.0.0.1:8999
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
@@ -48,6 +48,136 @@ Connect Suc
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 PlayerController singleton already created!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player: { "pid": 1 }
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player: { "pid": 1 }
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 1060 (ID=0x1c20)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll into Unity Child Domain
+- Completed reload, in  0.052 seconds
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 5600x1350 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.889400 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 173c -> priority: 1 
+  Thread -> id: 1040 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.205300 ms
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 368.
+Total: 0.542500 ms (FindLiveObjects: 0.035500 ms CreateObjectMapping: 0.011100 ms MarkObjects: 0.237100 ms  DeleteObjects: 0.257800 ms)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connect: 127.0.0.1:8999
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connect Suc
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+PlayerController singleton already created!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player: { "pid": 2 }
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player: { "pid": 2 }
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 1060 (ID=0x1c20)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll into Unity Child Domain
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll (this message is harmless)
+Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll into Unity Child Domain
+- Completed reload, in  0.059 seconds
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 5600x1350 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.128600 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1a98 -> priority: 1 
+  Thread -> id: 2a74 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.434000 ms
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 368.
+Total: 0.670600 ms (FindLiveObjects: 0.042600 ms CreateObjectMapping: 0.021100 ms MarkObjects: 0.295300 ms  DeleteObjects: 0.310600 ms)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connect: 127.0.0.1:8999
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Connect Suc
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+PlayerController singleton already created!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player: { "pid": 3 }
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player: { "pid": 3 }
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
