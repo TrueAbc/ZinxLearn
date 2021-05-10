@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"sync"
 	"trueabc.top/zinx/ziface"
+	"trueabc.top/zinx/zinx_app_demo/mmo_game/game_server/pb"
 )
 
 type Player struct {
@@ -62,4 +63,30 @@ func (p *Player) SendMsg(msgId uint32, data proto.Message) {
 		return
 	}
 
+}
+
+// 告知客户端玩家Id, 同步已经生成的玩家Id
+func (p *Player) SyncPid() {
+	data := &pb.SyncPid{
+		Pid: p.Pid,
+	}
+	p.SendMsg(1, data)
+}
+
+// 广播玩家的出生地点
+func (p *Player) BroadCastStartPosition() {
+	data := &pb.BroadCast{
+		Pid: p.Pid,
+		Tp:  2, // 广播位置
+		Data: &pb.BroadCast_P{
+			// Position
+			P: &pb.Position{
+				X: p.X,
+				Y: p.Y,
+				Z: p.Z,
+				V: p.V,
+			},
+		},
+	}
+	p.SendMsg(1, data)
 }
