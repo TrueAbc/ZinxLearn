@@ -100,3 +100,24 @@ func (m *AOIManager) GetSurroundGridsById(gID int) (grids []*Grid) {
 
 	return grids
 }
+
+func (m *AOIManager) GetGIdByPos(x, y float32) int {
+	ix := (int(x) - m.MinX) / m.gridWidth()
+	iy := (int(y) - m.MinY) / m.gridLength()
+
+	return iy*m.CntsX + ix
+}
+
+// 通过横纵坐标得到周边九宫格内全部的PlayerIDS
+func (m *AOIManager) GetPIdsByPos(x, y float32) (playIDs []int) {
+	// 得到玩家所在的格子id
+	id := m.GetGIdByPos(x, y)
+	// 通过gid得到周围的九宫格
+	grids := m.GetSurroundGridsById(id)
+	// 将九宫格里的全部player的id累加到playerIDs
+	for _, v := range grids {
+		playIDs = append(playIDs, v.GetPlayerIDs()...)
+	}
+
+	return playIDs
+}
