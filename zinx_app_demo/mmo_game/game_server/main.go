@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"trueabc.top/zinx/ziface"
+	"trueabc.top/zinx/zinx_app_demo/mmo_game/game_server/apis"
 	"trueabc.top/zinx/zinx_app_demo/mmo_game/game_server/core"
 	"trueabc.top/zinx/znet"
 )
@@ -20,6 +21,9 @@ func main() {
 		player.BroadCastStartPosition()
 		core.WManObj.AddPlayer(player)
 
+		connection.SetProperty("pid", player.Pid)
+		// 记录当前连接属于哪个玩家
+
 		fmt.Println("------> player id ", player.Pid, " is arrived.")
 	})
 
@@ -27,7 +31,7 @@ func main() {
 
 	})
 	// 注册路由业务
-
+	s.AddRouter(2, &apis.WorldChatApi{}) // 聊天函数
 	// 连接创建和销毁的钩子函数
 
 	s.Serve()

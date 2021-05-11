@@ -90,3 +90,8 @@ func (p *Player) BroadCastStartPosition() {
 	}
 	p.SendMsg(200, data)
 }
+
+// 玩家广播聊天消息
+func (p *Player) Talk(content string) {
+
+}
