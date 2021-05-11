@@ -88,5 +88,5 @@ func (p *Player) BroadCastStartPosition() {
 			},
 		},
 	}
-	p.SendMsg(1, data)
+	p.SendMsg(200, data)
 }
