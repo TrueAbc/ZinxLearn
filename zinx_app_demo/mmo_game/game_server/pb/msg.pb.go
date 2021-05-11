@@ -261,16 +261,65 @@ func (*BroadCast) XXX_OneofWrappers() []interface{} {
 	}
 }
 
+// 聊天
+type Talk struct {
+	Content              string   `protobuf:"bytes,1,opt,name=Content,proto3" json:"Content,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Talk) Reset()         { *m = Talk{} }
+func (m *Talk) String() string { return proto.CompactTextString(m) }
+func (*Talk) ProtoMessage()    {}
+func (*Talk) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c06e4cca6c2cc899, []int{3}
+}
+func (m *Talk) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Talk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Talk.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Talk) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Talk.Merge(m, src)
+}
+func (m *Talk) XXX_Size() int {
+	return m.Size()
+}
+func (m *Talk) XXX_DiscardUnknown() {
+	xxx_messageInfo_Talk.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Talk proto.InternalMessageInfo
+
+func (m *Talk) GetContent() string {
+	if m != nil {
+		return m.Content
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*SyncPid)(nil), "pb.SyncPid")
 	proto.RegisterType((*Position)(nil), "pb.Position")
 	proto.RegisterType((*BroadCast)(nil), "pb.BroadCast")
+	proto.RegisterType((*Talk)(nil), "pb.Talk")
 }
 
 func init() { proto.RegisterFile("msg.proto", fileDescriptor_c06e4cca6c2cc899) }
 
 var fileDescriptor_c06e4cca6c2cc899 = []byte{
-	// 236 bytes of a gzipped FileDescriptorProto
+	// 255 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xcc, 0x2d, 0x4e, 0xd7,
 	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2a, 0x48, 0x52, 0x92, 0xe6, 0x62, 0x0f, 0xae, 0xcc,
 	0x4b, 0x0e, 0xc8, 0x4c, 0x11, 0x12, 0xe0, 0x62, 0x0e, 0xc8, 0x4c, 0x91, 0x60, 0x54, 0x60, 0xd4,
@@ -283,9 +332,10 @@ var fileDescriptor_c06e4cca6c2cc899 = []byte{
 	0x60, 0x02, 0x42, 0x32, 0x5c, 0x8c, 0x01, 0x60, 0x93, 0xb9, 0x8d, 0x78, 0xf4, 0x0a, 0x92, 0xf4,
 	0x60, 0x8e, 0xf3, 0x60, 0x08, 0x62, 0x0c, 0x10, 0x52, 0xe0, 0xe2, 0x72, 0x4c, 0x06, 0x71, 0x5d,
 	0x12, 0x4b, 0x12, 0x25, 0x58, 0x41, 0x26, 0x7a, 0x30, 0x04, 0x21, 0x89, 0x39, 0xb1, 0x71, 0xb1,
-	0x80, 0x69, 0xd1, 0x13, 0x8f, 0xe4, 0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71,
-	0xc6, 0x63, 0x39, 0x86, 0x55, 0x4c, 0x4c, 0x01, 0x49, 0x49, 0x6c, 0xe0, 0x60, 0x31, 0x06, 0x04,
-	0x00, 0x00, 0xff, 0xff, 0xfa, 0xc6, 0x60, 0x8b, 0x23, 0x01, 0x00, 0x00,
+	0x80, 0x68, 0x25, 0x05, 0x2e, 0x96, 0x90, 0xc4, 0x9c, 0x6c, 0x21, 0x09, 0x84, 0x5d, 0x20, 0x17,
+	0x71, 0xc2, 0x6d, 0x72, 0x12, 0x3d, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6, 0x07, 0x8f,
+	0xe4, 0x18, 0x67, 0x3c, 0x96, 0x63, 0x58, 0xc5, 0xc4, 0x14, 0x90, 0x94, 0xc4, 0x06, 0x0e, 0x38,
+	0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0x4b, 0x54, 0x9e, 0x32, 0x45, 0x01, 0x00, 0x00,
 }
 
 func (m *SyncPid) Marshal() (dAtA []byte, err error) {
@@ -464,6 +514,40 @@ func (m *BroadCast_ActionData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	dAtA[i] = 0x28
 	return len(dAtA) - i, nil
 }
+func (m *Talk) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Talk) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Talk) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Content) > 0 {
+		i -= len(m.Content)
+		copy(dAtA[i:], m.Content)
+		i = encodeVarintMsg(dAtA, i, uint64(len(m.Content)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintMsg(dAtA []byte, offset int, v uint64) int {
 	offset -= sovMsg(v)
 	base := offset
@@ -564,6 +648,21 @@ func (m *BroadCast_ActionData) Size() (n int) {
 	var l int
 	_ = l
 	n += 1 + sovMsg(uint64(m.ActionData))
+	return n
+}
+func (m *Talk) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Content)
+	if l > 0 {
+		n += 1 + l + sovMsg(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -892,6 +991,89 @@ func (m *BroadCast) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.Data = &BroadCast_ActionData{v}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipMsg(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthMsg
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Talk) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowMsg
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Talk: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Talk: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Content", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowMsg
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthMsg
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthMsg
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Content = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipMsg(dAtA[iNdEx:])

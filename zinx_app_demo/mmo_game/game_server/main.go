@@ -9,6 +9,7 @@ import (
 
 func main() {
 	s := znet.NewServer("MMO Game Server")
+
 	s.SetOnConnStart(func(connection ziface.IConnection) {
 		// 创建一个player
 		player := core.NewPlayer(connection)
