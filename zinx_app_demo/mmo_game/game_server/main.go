@@ -18,6 +18,7 @@ func main() {
 		player.SyncPid()
 
 		player.BroadCastStartPosition()
+		core.WManObj.AddPlayer(player)
 
 		fmt.Println("------> player id ", player.Pid, " is arrived.")
 	})
