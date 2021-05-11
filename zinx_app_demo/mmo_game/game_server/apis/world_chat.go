@@ -12,7 +12,7 @@ type WorldChatApi struct {
 	znet.BaseRouter
 }
 
-func (wc *WorldChatApi) Handle(request ziface.IRequest) {
+func (wc *WorldChatApi) Handler(request ziface.IRequest) {
 	// 解析客户端的proto协议
 	proto_msg := pb.Talk{}
 	err := proto_msg.Unmarshal(request.GetData())
@@ -23,6 +23,7 @@ func (wc *WorldChatApi) Handle(request ziface.IRequest) {
 
 	//
 	pid, _ := request.GetConnection().GetProperty("pid")
+	fmt.Println("id of this pid: ", pid)
 	player := core.WManObj.GetPlayerByPid(pid.(int32))
 
 	player.Talk(proto_msg.Content)

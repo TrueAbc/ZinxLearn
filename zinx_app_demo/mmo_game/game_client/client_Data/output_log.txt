@@ -18,22 +18,22 @@ Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\clien
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll into Unity Child Domain
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll (this message is harmless)
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll into Unity Child Domain
-- Completed reload, in  0.046 seconds
+- Completed reload, in  0.051 seconds
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 5600x1350 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.062200 ms
+UnloadTime: 0.631900 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1d5c -> priority: 1 
-  Thread -> id: 5e0 -> priority: 1 
+  Thread -> id: 13ac -> priority: 1 
+  Thread -> id: 24a4 -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.345300 ms
+UnloadTime: 2.856400 ms
 
 Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 368.
-Total: 0.480200 ms (FindLiveObjects: 0.024000 ms CreateObjectMapping: 0.013400 ms MarkObjects: 0.224900 ms  DeleteObjects: 0.217100 ms)
+Total: 0.398500 ms (FindLiveObjects: 0.020000 ms CreateObjectMapping: 0.010500 ms MarkObjects: 0.204500 ms  DeleteObjects: 0.162900 ms)
 
 Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
  
@@ -55,7 +55,7 @@ Player: { "pid": 1 }
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-Player: { "pid": 1 }
+Start Game
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
@@ -79,22 +79,22 @@ Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\clien
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll into Unity Child Domain
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll (this message is harmless)
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll into Unity Child Domain
-- Completed reload, in  0.052 seconds
+- Completed reload, in  0.053 seconds
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 5600x1350 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.889400 ms
+UnloadTime: 0.928300 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 173c -> priority: 1 
-  Thread -> id: 1040 -> priority: 1 
+  Thread -> id: 1c18 -> priority: 1 
+  Thread -> id: 918 -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.205300 ms
+UnloadTime: 3.814500 ms
 
 Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 368.
-Total: 0.542500 ms (FindLiveObjects: 0.035500 ms CreateObjectMapping: 0.011100 ms MarkObjects: 0.237100 ms  DeleteObjects: 0.257800 ms)
+Total: 0.815500 ms (FindLiveObjects: 0.033700 ms CreateObjectMapping: 0.023300 ms MarkObjects: 0.324400 ms  DeleteObjects: 0.432000 ms)
 
 Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
  
@@ -116,7 +116,7 @@ Player: { "pid": 2 }
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-Player: { "pid": 2 }
+Start Game
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
@@ -140,22 +140,22 @@ Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\clien
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\Google.Protobuf.dll into Unity Child Domain
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll (this message is harmless)
 Loading D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\protobuf-net.dll into Unity Child Domain
-- Completed reload, in  0.059 seconds
+- Completed reload, in  0.058 seconds
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\code\go\ZinxLearn\zinx_app_demo\mmo_game\game_client\client_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 5600x1350 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.128600 ms
+UnloadTime: 1.994200 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1a98 -> priority: 1 
-  Thread -> id: 2a74 -> priority: 1 
+  Thread -> id: b2c -> priority: 1 
+  Thread -> id: 1be4 -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.434000 ms
+UnloadTime: 6.213000 ms
 
 Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 368.
-Total: 0.670600 ms (FindLiveObjects: 0.042600 ms CreateObjectMapping: 0.021100 ms MarkObjects: 0.295300 ms  DeleteObjects: 0.310600 ms)
+Total: 0.443200 ms (FindLiveObjects: 0.029000 ms CreateObjectMapping: 0.055600 ms MarkObjects: 0.180600 ms  DeleteObjects: 0.177200 ms)
 
 Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
  
@@ -177,7 +177,7 @@ Player: { "pid": 3 }
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-Player: { "pid": 3 }
+Start Game
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 

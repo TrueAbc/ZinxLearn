@@ -93,5 +93,20 @@ func (p *Player) BroadCastStartPosition() {
 
 // 玩家广播聊天消息
 func (p *Player) Talk(content string) {
+	// 构建200的消息
+	proto_msg := &pb.BroadCast{
+		Pid: p.Pid,
+		Tp:  1, // 聊天广播
+		Data: &pb.BroadCast_Content{
+			Content: content,
+		},
+	}
 
+	// 得到当前的在线玩家
+	players := WManObj.GetAllPlayers()
+	// 想所有玩家发送
+	for _, player := range players {
+		fmt.Println("id of target: ", player.Pid)
+		player.SendMsg(200, proto_msg)
+	}
 }
