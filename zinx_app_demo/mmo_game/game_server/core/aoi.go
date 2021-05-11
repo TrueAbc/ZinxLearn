@@ -8,6 +8,17 @@ import (
 AOI区域管理模块
 */
 
+// 定义AOI的边界
+const (
+	AOI_MIN_X  int = 85
+	AOI_MAX_X  int = 410
+	AOI_CNTS_X int = 10
+
+	AOI_MIN_Y  int = 85
+	AOI_MAX_Y  int = 410
+	AOI_CNTS_Y int = 10
+)
+
 type AOIManager struct {
 	MinX int
 	MinY int
