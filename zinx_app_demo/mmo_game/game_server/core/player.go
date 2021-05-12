@@ -136,5 +136,22 @@ func (p *Player) SyncSurrounding() {
 	}
 
 	// 接受周边玩家的位置
-
+	// 1. 组件proto数据
+	data := make([]*pb.Player, 0, len(pids))
+	for _, player := range players {
+		data = append(data, &pb.Player{
+			Pid: player.Pid,
+			P: &pb.Position{
+				X: player.X,
+				Y: player.Y,
+				Z: player.Z,
+				V: player.V,
+			},
+		})
+	}
+	sync_msg := &pb.SyncPlayers{
+		Ps: data,
+	}
+	// 2.
+	p.SendMsg(202, sync_msg)
 }
