@@ -111,14 +111,22 @@ func (p *Player) Talk(content string) {
 	}
 }
 
-func (p *Player) SyncSurrounding() {
-	// 获取当前玩家周围的玩家信息
+func (p *Player) GetSurroundingPlayers() (players []*Player) {
+	// 获取九宫格的所有玩家
+
 	pids := WManObj.aoi.GetPIdsByPos(p.X, p.Z)
 	// 将自己的位置发送给周围玩家
-	players := make([]*Player, 0, len(pids))
+	players = make([]*Player, 0, len(pids))
 	for _, pid := range pids {
 		players = append(players, WManObj.GetPlayerByPid(int32(pid)))
 	}
+	return players
+}
+
+func (p *Player) SyncSurrounding() {
+	players := p.GetSurroundingPlayers()
+	//
+
 	proto_msg := &pb.BroadCast{
 		Pid: p.Pid,
 		Tp:  2,
@@ -137,7 +145,7 @@ func (p *Player) SyncSurrounding() {
 
 	// 接受周边玩家的位置
 	// 1. 组件proto数据
-	data := make([]*pb.Player, 0, len(pids))
+	data := make([]*pb.Player, 0, len(players))
 	for _, player := range players {
 		data = append(data, &pb.Player{
 			Pid: player.Pid,
@@ -154,4 +162,28 @@ func (p *Player) SyncSurrounding() {
 	}
 	// 2.
 	p.SendMsg(202, sync_msg)
+}
+
+// 广播当前玩家的位置信息
+func (p *Player) UpdatePos(x float32, y float32, z float32, v float32) {
+	p.X, p.Y, p.Z, p.V = x, y, z, v
+
+	proto_msg := &pb.BroadCast{
+		Pid: p.Pid,
+		Tp:  4, // 移动之后的坐标信息
+		Data: &pb.BroadCast_P{
+			P: &pb.Position{
+				X: x,
+				Y: y,
+				Z: z,
+				V: v,
+			},
+		},
+	}
+
+	// 获取
+	players := p.GetSurroundingPlayers()
+	for _, player := range players {
+		player.SendMsg(200, proto_msg)
+	}
 }

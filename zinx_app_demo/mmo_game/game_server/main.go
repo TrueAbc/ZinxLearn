@@ -34,6 +34,7 @@ func main() {
 	})
 	// 注册路由业务
 	s.AddRouter(2, &apis.WorldChatApi{}) // 聊天函数
+	s.AddRouter(3, &apis.MoveApi{})      // 位置信息更新
 	// 连接创建和销毁的钩子函数
 
 	s.Serve()
