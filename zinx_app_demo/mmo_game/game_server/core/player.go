@@ -166,7 +166,14 @@ func (p *Player) SyncSurrounding() {
 
 // 广播当前玩家的位置信息
 func (p *Player) UpdatePos(x float32, y float32, z float32, v float32) {
+	oldGid := WManObj.aoi.GetGIdByPos(p.X, p.Z)
 	p.X, p.Y, p.Z, p.V = x, y, z, v
+	newGid := WManObj.aoi.GetGIdByPos(p.X, p.Z)
+	fmt.Printf("old grid id of me:%d,   new grid id:%d\n", oldGid, newGid)
+	if newGid != oldGid {
+		WManObj.aoi.RemovePidFromGrid(int(p.Pid), oldGid)
+		WManObj.aoi.AddPidToGrid(int(p.Pid), newGid)
+	}
 
 	proto_msg := &pb.BroadCast{
 		Pid: p.Pid,

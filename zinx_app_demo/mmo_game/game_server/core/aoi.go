@@ -150,11 +150,13 @@ func (m *AOIManager) GetPidsByGid(gID int) (playerIDs []int) {
 // 通过坐标将play添加到一个格子中
 func (m *AOIManager) AddToGridByPos(pID int, x, y float32) {
 	id := m.GetGIdByPos(x, y)
+	fmt.Printf("add player %d to grid: %d\n", pID, id)
 	m.grids[id].Add(pID)
 }
 
 // 通过坐标把一个player从一个格子中删除
 func (m *AOIManager) RemoveFromGridbyPos(pID int, x, y float32) {
 	id := m.GetGIdByPos(x, y)
+	fmt.Printf("remove player %d from grid: %d\n", pID, id)
 	m.grids[id].Remove(pID)
 }
