@@ -136,4 +136,5 @@ func (p *Player) SyncSurrounding() {
 	}
 
 	// 接受周边玩家的位置
+
 }
