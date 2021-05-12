@@ -24,6 +24,8 @@ func main() {
 		connection.SetProperty("pid", player.Pid)
 		// 记录当前连接属于哪个玩家
 
+		// 同步周边玩家, 广播当前玩家的位置信息
+		player.SyncSurrounding()
 		fmt.Println("------> player id ", player.Pid, " is arrived.")
 	})
 

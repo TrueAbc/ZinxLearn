@@ -110,3 +110,30 @@ func (p *Player) Talk(content string) {
 		player.SendMsg(200, proto_msg)
 	}
 }
+
+func (p *Player) SyncSurrounding() {
+	// 获取当前玩家周围的玩家信息
+	pids := WManObj.aoi.GetPIdsByPos(p.X, p.Z)
+	// 将自己的位置发送给周围玩家
+	players := make([]*Player, 0, len(pids))
+	for _, pid := range pids {
+		players = append(players, WManObj.GetPlayerByPid(int32(pid)))
+	}
+	proto_msg := &pb.BroadCast{
+		Pid: p.Pid,
+		Tp:  2,
+		Data: &pb.BroadCast_P{
+			P: &pb.Position{
+				X: p.X,
+				Y: p.Y,
+				Z: p.Z,
+				V: p.V,
+			},
+		},
+	}
+	for _, player := range players {
+		player.SendMsg(200, proto_msg)
+	}
+
+	// 接受周边玩家的位置
+}
