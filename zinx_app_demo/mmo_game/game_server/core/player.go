@@ -194,3 +194,17 @@ func (p *Player) UpdatePos(x float32, y float32, z float32, v float32) {
 		player.SendMsg(200, proto_msg)
 	}
 }
+
+// 玩家下綫業務
+func (p *Player) Offline() {
+	players := p.GetSurroundingPlayers()
+	proto_msg := &pb.SyncPid{
+		Pid: p.Pid,
+	}
+	for _, player := range players {
+		player.SendMsg(201, proto_msg)
+	}
+
+	// 将当前玩家从aoi删除
+	WManObj.RemovePlayer(p.Pid)
+}

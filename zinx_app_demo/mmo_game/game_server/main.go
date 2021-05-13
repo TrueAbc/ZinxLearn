@@ -30,6 +30,10 @@ func main() {
 	})
 
 	s.SetOnConnStop(func(connection ziface.IConnection) {
+		pid, _ := connection.GetProperty("pid")
+		player := core.WManObj.GetPlayerByPid(pid.(int32))
+
+		player.Offline()
 
 	})
 	// 注册路由业务
